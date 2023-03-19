@@ -120,9 +120,12 @@ describe('HomePage', () => {
     expect(fixture.componentInstance.presentToast).toHaveBeenCalled();
   }));
 
-  it('should show modal',  async() => {
-    await expectAsync(component.presentModal()).toBeResolved();
-  });
+  it('should show modal',  fakeAsync(() => {
+    fixture.componentInstance.presentModal();
+    tick(1000);
+    fixture.detectChanges();
+    expect(component.modal).toBeTruthy();
+  }));
 
 
 });

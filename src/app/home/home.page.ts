@@ -16,9 +16,7 @@ export class HomePage implements OnInit, AfterViewInit{
   keyword: string = '';
   fakeImages = new Array(10);
   itemsSelected: number[] = [];
-  modal!: HTMLIonModalElement;
-  toast!: HTMLIonToastElement;
-
+  modal: boolean = false;
 
   constructor(private imagesService: ImagesService,
               private modalControler: ModalController,
@@ -88,12 +86,12 @@ export class HomePage implements OnInit, AfterViewInit{
   }
 
   async presentModal() {
+    this.modal = true;
     const modal = this.modalControler.create({
       component: InfoComponent,
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.8
     });
     const present = (await modal).present();
-    return present;
   }
 }
